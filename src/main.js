@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import stores from '../src/stores';
+import router from '../src/routers';
 import './styles/all.scss';
 
 Vue.config.productionTip = false;
@@ -13,4 +14,5 @@ new Vue({
   components: { App },
   template: '<App/>',
   stores,
+  router,
 });
