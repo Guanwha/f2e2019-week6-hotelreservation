@@ -40,8 +40,12 @@
         <div class="col-12 col-md-6 col-lg-4 flex-rcc"
              v-for='room in roomsIntro'
              :key='room.id'
+             @click="clickRoom(room.id)"
         >
-          <RoomCard/>
+          <RoomCard :pBg='room.imageUrl'
+                    :pTitle='room.name'
+                    :pNormalPrice='room.normalDayPrice'
+                    :pHolidayPrice='room.holidayPrice'/>
         </div>
       </div>
     </div>
@@ -66,6 +70,9 @@ export default {
     this.getRooms();
   },
   methods: {
+    clickRoom(id) {
+      alert(`you click room (${id})`);
+    },
     ...mapActions(['getRooms']),
   },
   computed: {
