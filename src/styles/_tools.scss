@@ -1,0 +1,117 @@
+
+.hide-in-phone {
+  display: none;
+  @media(min-width: $limit-w-pc) {
+    display: block;
+  }
+}
+
+// text
+.txt-l {
+  text-align: left;
+}
+.txt-c {
+  text-align: center;
+}
+.txt-r {
+  text-align: right;
+}
+
+// flex utility
+//-- row, left, center
+.flex-rlc {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+}
+//-- row, center, bottom
+.flex-rlb {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-end;
+  text-align: center;
+}
+//-- row, center, top
+.flex-rct {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+}
+//-- row, center, center
+.flex-rcc {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+//-- row, center, bottom
+.flex-rcb {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+}
+//-- row, right, center
+.flex-rrc {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+}
+//-- row, space-between, bottom
+.flex-rsbb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+//-- column, center, left
+.flex-ccl {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+//-- column, center, center
+.flex-ccc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+//-- column, center, right
+.flex-ccr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+// layout
+.remove-m {
+  margin: 0;
+}
+.remove-p {
+  padding: 0;
+}
+.full-width {
+  width: 100%;
+}
+.full-height {
+  height: 100%;
+}
+
+// vee-validate
+.is-danger {
+  border-color: red;
+  color: red;
+}
