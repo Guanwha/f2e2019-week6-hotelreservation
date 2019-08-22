@@ -9,7 +9,6 @@ export const mutations = {
     }
   },
   [types.GET_ROOM](state, payload) {
-    console.log(payload);
     if (payload) {
       state.roomDetail = payload.room;
       state.roomBooking = payload.booking;
