@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     clickRoom(room) {
-      alert(`You have clicked ${room.name}.`);
+      this.$router.push({ name: 'RoomInfo', params: { id: room.id } });
     },
     ...mapActions(['getRooms']),
   },

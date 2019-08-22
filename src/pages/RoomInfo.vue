@@ -1,11 +1,17 @@
 <template>
-  <div class="wrap">
+  <div class="wrap flex-ccc">
+    {{roomID}}
   </div>
 </template>
 
 <script>
 export default {
   name: 'RoomInfo',
+  data() {
+    return {
+      roomID: this.$route.params.id,
+    };
+  },
 };
 </script>
 
