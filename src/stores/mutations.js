@@ -8,9 +8,16 @@ export const mutations = {
       state.roomsIntro = payload;
     }
   },
+  // payload is error object (include action, errMessage)
+  [types.UPDATE_ERR](state, payload) {
+    if (payload) {
+      state.lastErrorMessage = payload;
+    }
+  },
 };
 
 export const state = {
   roomsIntro: [],             // introduction of all rooms
   roomsDetail: [],            // detail information of all rooms
+  lastErrorMessage: null,     // include action, errMessage
 };

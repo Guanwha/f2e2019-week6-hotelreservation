@@ -15,7 +15,7 @@ const actions = {
         commit(types.GET_ROOMS, response.data.items);
       }
     }).catch((err) => {
-      console.log(err);
+      commit(types.UPDATE_ERR, { action: 'getRooms', errMessage: err });
     });
   },
 };
