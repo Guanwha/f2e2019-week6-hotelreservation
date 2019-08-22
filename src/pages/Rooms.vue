@@ -42,12 +42,24 @@
 </template>
 
 <script>
+// import Vue from 'vue';
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'Rooms',
   data() {
     return {
       headerBg: 'https://images.unsplash.com/photo-1558976825-6b1b03a03719?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',   // [Temp]
     };
+  },
+  mounted() {
+    this.getRooms();
+  },
+  methods: {
+    ...mapActions(['getRooms']),
+  },
+  computed: {
+    ...mapGetters(['roomsIntro']),
   },
 };
 </script>
