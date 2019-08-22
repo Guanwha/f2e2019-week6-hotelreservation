@@ -4,7 +4,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import App from './App';
-import stores from '../src/stores';
+import store from '../src/stores';
 import router from '../src/routers';
 import './styles/all.scss';
 
@@ -16,6 +16,6 @@ new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
-  stores,
+  store,
   router,
 });
