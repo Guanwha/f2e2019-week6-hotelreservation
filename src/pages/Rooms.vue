@@ -1,5 +1,14 @@
 <template>
-  <div class="wrap" :style="{ 'background-image': 'url(' + headerBg + ')' }">
+  <div class="wrap position-relative">
+    <!-- default background -->
+    <div :class="['bg', 'position-absolute', 'fixed-top', { 'active': (!curShowRoomID) }]"
+         :style="{ 'background-image': 'url(' + defaultBg + ')'}"/>
+    <!-- loop background -->
+    <div v-for='room in roomsIntro'
+         :key='room.id'
+         :class="['bg', 'position-absolute', 'fixed-top', { 'active': (curShowRoomID === room.id) } ]"
+         :style="{ 'background-image': 'url(' + room.imageUrl + ')' }"/>
+    <!-- web content -->
     <div class="container">
       <div class="row a1-header">
         <!-- header -->
@@ -30,7 +39,7 @@
               <!-- info: home -->
               <div class="flex-rlc contact-detail">
                 <img class="icon" src="../assets/icon_home.svg" alt="">
-                <p>台北市羅斯福路十段30號</p>
+                <p>台北市羅斯福路八段23號</p>
               </div>
             </div>
           </div>
@@ -40,7 +49,7 @@
         <div class="col-12 col-md-6 col-lg-4 flex-rcc"
              v-for='room in roomsIntro'
              :key='room.id'
-             @click="clickRoom(room.id)"
+             @click="clickRoom(room)"
         >
           <RoomCard :pBg='room.imageUrl'
                     :pTitle='room.name'
@@ -63,15 +72,23 @@ export default {
   },
   data() {
     return {
-      headerBg: 'https://images.unsplash.com/photo-1558976825-6b1b03a03719?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',   // [Temp]
+      defaultBg: 'https://images.unsplash.com/photo-1558976825-6b1b03a03719?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',   // [Temp]
+      curShowRoomID: null,
     };
   },
   mounted() {
     this.getRooms();
+    setInterval(() => {
+      if (this.roomsIntro.length > 0) {
+        const idx = Math.floor(Math.random() * this.roomsIntro.length);
+        this.curShowRoomID = this.roomsIntro[idx].id;
+        console.log(`bg id: ${this.curShowRoomID}`);
+      }
+    }, 7000);
   },
   methods: {
-    clickRoom(id) {
-      alert(`you click room (${id})`);
+    clickRoom(room) {
+      alert(`You have clicked ${room.name}.`);
     },
     ...mapActions(['getRooms']),
   },
@@ -87,8 +104,18 @@ export default {
 .wrap {
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  .bg {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1s linear;
+  }
+  .active {
+    opacity: 1;
+  }
 }
 .a1-header {
   padding-top: 13%;
