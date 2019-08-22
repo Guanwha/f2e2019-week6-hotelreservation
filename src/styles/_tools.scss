@@ -18,6 +18,7 @@
 }
 
 // flex utility
+//-- row, left, center
 .flex-rlc {
   display: flex;
   flex-direction: row;
@@ -25,6 +26,23 @@
   align-items: center;
   text-align: left;
 }
+//-- row, center, bottom
+.flex-rlb {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-end;
+  text-align: center;
+}
+//-- row, center, top
+.flex-rct {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+}
+//-- row, center, center
 .flex-rcc {
   display: flex;
   flex-direction: row;
@@ -32,6 +50,15 @@
   align-items: center;
   text-align: center;
 }
+//-- row, center, bottom
+.flex-rcb {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+}
+//-- row, right, center
 .flex-rrc {
   display: flex;
   flex-direction: row;
@@ -39,18 +66,29 @@
   align-items: center;
   text-align: right;
 }
+//-- row, space-between, bottom
+.flex-rsbb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+//-- column, center, left
 .flex-ccl {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
+//-- column, center, center
 .flex-ccc {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+//-- column, center, right
 .flex-ccr {
   display: flex;
   flex-direction: column;

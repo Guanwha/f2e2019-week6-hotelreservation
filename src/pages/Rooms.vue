@@ -36,17 +36,27 @@
           </div>
         </div>
       </div>
-      <div class="row a1-rooms"></div>
+      <div class="row a1-rooms">
+        <div class="col-12 col-md-6 col-lg-4 flex-rcc"
+             v-for='room in roomsIntro'
+             :key='room.id'
+        >
+          <RoomCard/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// import Vue from 'vue';
 import { mapActions, mapGetters } from 'vuex';
+import RoomCard from '../components/RoomCard';
 
 export default {
   name: 'Rooms',
+  components: {
+    RoomCard,
+  },
   data() {
     return {
       headerBg: 'https://images.unsplash.com/photo-1558976825-6b1b03a03719?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',   // [Temp]
