@@ -82,7 +82,6 @@ export default {
       if (this.roomsIntro.length > 0) {
         const idx = Math.floor(Math.random() * this.roomsIntro.length);
         this.curShowRoomID = this.roomsIntro[idx].id;
-        console.log(`bg id: ${this.curShowRoomID}`);
       }
     }, 7000);
   },
