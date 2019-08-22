@@ -5,12 +5,23 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'RoomInfo',
   data() {
     return {
       roomID: this.$route.params.id,
     };
+  },
+  mounted() {
+    this.getRoom(this.$route.params.id);
+  },
+  methods: {
+    ...mapActions(['getRoom']),
+  },
+  computed: {
+    ...mapGetters(['roomDetail', 'roomBooking']),
   },
 };
 </script>

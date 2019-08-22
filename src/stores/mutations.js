@@ -8,6 +8,13 @@ export const mutations = {
       state.roomsIntro = payload;
     }
   },
+  [types.GET_ROOM](state, payload) {
+    console.log(payload);
+    if (payload) {
+      state.roomDetail = payload.room;
+      state.roomBooking = payload.booking;
+    }
+  },
   // payload is error object (include action, errMessage)
   [types.UPDATE_ERR](state, payload) {
     if (payload) {
@@ -18,6 +25,7 @@ export const mutations = {
 
 export const state = {
   roomsIntro: [],             // introduction of all rooms
-  roomsDetail: [],            // detail information of all rooms
+  roomDetail: null,           // detail information of queried room
+  roomBooking: null,          // booking list of queried room
   lastErrorMessage: null,     // include action, errMessage
 };
