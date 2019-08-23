@@ -111,6 +111,9 @@ export default {
   top: 5.37%;
   left: 4%;
   z-index: 1;
+  &:hover {
+    filter: drop-shadow(0 0 9px $clr-white);
+  }
 }
 .a1-images {
   width: 100%;
