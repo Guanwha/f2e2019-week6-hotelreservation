@@ -8,9 +8,30 @@ export const mutations = {
       state.roomsIntro = payload;
     }
   },
+  [types.GET_ROOM](state, payload) {
+    if (payload) {
+      state.roomDetail = payload.room;
+      state.roomBooking = payload.booking;
+    }
+  },
+  // payload is error object (include action, errMessage)
+  [types.UPDATE_ERR](state, payload) {
+    if (payload) {
+      state.lastErrorMessage = payload;
+    }
+  },
 };
 
 export const state = {
   roomsIntro: [],             // introduction of all rooms
-  roomsDetail: [],            // detail information of all rooms
+  roomDetail: {               // detail information of queried room
+    imageUrl: [],
+    descriptionShort: {
+      Bed: [],
+    },
+    checkInAndOut: {},
+    amenities: {},
+  },
+  roomBooking: null,          // booking list of queried room
+  lastErrorMessage: null,     // include action, errMessage
 };
