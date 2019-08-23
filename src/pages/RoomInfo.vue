@@ -19,16 +19,16 @@
         <!-- room information -->
         <div class="col-12 col-lg-6 a2-info">
           <!-- room type -->
-          <div class="mx-1 room-type">{{roomDetail.name}}</div>
+          <div class="mx-1 room-type txt-l">{{roomDetail.name}}</div>
           <!-- room info -->
-          <div class="mx-1 room-info">
+          <div class="mx-1 room-info txt-l">
             <div>房客人數限制：{{roomDetail.descriptionShort.GuestMin}}～{{roomDetail.descriptionShort.GuestMax}} 人</div>
             <div>床型：{{roomDetail.descriptionShort.Bed[0]}}</div>
             <div>衛浴數量：{{roomDetail.descriptionShort['Private-Bath']}} 間</div>
             <div>房間大小：{{roomDetail.descriptionShort.Footage}} 平方公尺</div>
           </div>
           <!-- room description -->
-          <div class="mx-1 room-desc">{{roomDetail.description}}</div>
+          <div class="mx-1 room-desc txt-l">{{roomDetail.description}}</div>
           <!-- check-in & check-out -->
           <div class="row mx-1 room-inout">
             <div class="col-6 p-0 flex-ccl">
@@ -47,7 +47,7 @@
         <div class="col-12 col-lg-6 a2-book">
           <div class="row">
             <!-- price -->
-            <div class="col-12 col-lg-3 room-price">
+            <div class="col-12 col-lg-3 room-price txt-r">
               <div>NT.{{roomDetail.normalDayPrice}}</div>
               <div>平日(一~四)</div>
               <div>NT.{{roomDetail.holidayPrice}}</div>
@@ -146,14 +146,11 @@ export default {
 .a2-info {
   background: red;
   .room-type {
-    text-align: left;
   }
   .room-info {
-    text-align: left;
     margin-top: 6.44%;
   }
   .room-desc {
-    text-align: left;
     margin-top: 3%;
   }
   .room-inout {
@@ -170,7 +167,6 @@ export default {
 .a2-book {
   background: blue;
   .room-price {
-    text-align: right;
     background: lightblue;
   }
   .room-book {
