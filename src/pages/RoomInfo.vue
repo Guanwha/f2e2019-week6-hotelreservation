@@ -41,7 +41,71 @@
             </div>
           </div>
           <!-- equipments -->
-          <div class="row mx-1 room-equip"></div>
+          <div class="row room-equip">
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Wi-Fi']}]">
+              <img src='../assets/amenity_wifi.svg'>
+              <p class='txt ml-3'>Wi-Fi</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Television']}]">
+              <img src='../assets/amenity_television.svg'>
+              <p class='txt ml-3'>電視</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Great-View']}]">
+              <img src='../assets/amenity_great_view.svg'>
+              <p class='txt ml-3'>漂亮的視野</p>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Breakfast']}]">
+              <img src='../assets/amenity_breakfast.svg'>
+              <p class='txt ml-3'>早餐</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Air-Conditioner']}]">
+              <img src='../assets/amenity_air_conditioner.svg'>
+              <p class='txt ml-3'>空調</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Smoke-Free']}]">
+              <img src='../assets/amenity_smoke_free.svg'>
+              <p class='txt ml-3'>禁止吸菸</p>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Mini-Bar']}]">
+              <img src='../assets/amenity_mini_bar.svg'>
+              <p class='txt ml-3'>Ｍini-Bar</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Refrigerator']}]">
+              <img src='../assets/amenity_refrigerator.svg'>
+              <p class='txt ml-3'>冰箱</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Child-Friendly']}]">
+              <img src='../assets/amenity_child_friendly.svg'>
+              <p class='txt ml-3'>適合兒童</p>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Room-Service']}]">
+              <img src='../assets/amenity_room_service.svg'>
+              <p class='txt ml-3'>Room Service</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Sofa']}]">
+              <img src='../assets/amenity_sofa.svg'>
+              <p class='txt ml-3'>沙發</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
+                 :class="[{ 'disabled': !roomDetail.amenities['Pet-Friendly']}]">
+              <img src='../assets/amenity_pet_friendly.svg'>
+              <p class='txt ml-3'>寵物攜帶</p>
+            </div>
+          </div>
         </div>
         <!-- room price & booking -->
         <div class="col-12 col-lg-7 a2-book">
@@ -140,7 +204,6 @@ export default {
 
 // content
 .a1-content {
-  height: 2000px;
   margin-top: 4%;
 }
 
@@ -177,9 +240,24 @@ export default {
     }
   }
   .room-equip {
-    height: 200px;
     background: $clr-gray-f0;
     margin: 8.3% auto;
+    .amenity {
+      margin: 15px 0;
+      img {
+        width: 26px;
+        height: 26px;
+      }
+      .txt {
+        font-size: $f-size-1;
+        letter-spacing: 1.25px;
+        line-height: 1.5;
+      }
+    }
+    .disabled {
+      filter: invert(100%);
+      color: #4c4c4c;
+    }
   }
 }
 
