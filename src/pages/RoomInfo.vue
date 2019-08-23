@@ -41,7 +41,7 @@
             </div>
           </div>
           <!-- equipments -->
-          <div class="row room-equip">
+          <div class="row room-amenities">
             <div class="col-6 col-md-4 col-lg-6 col-xl-4 amenity flex-rlc"
                  :class="[{ 'disabled': !roomDetail.amenities['Wi-Fi']}]">
               <img src='../assets/amenity_wifi.svg'>
@@ -239,7 +239,7 @@ export default {
       line-height: 1.5;
     }
   }
-  .room-equip {
+  .room-amenities {
     background: $clr-gray-f0;
     margin: 8.3% auto;
     .amenity {
