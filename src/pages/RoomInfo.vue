@@ -17,7 +17,7 @@
     <div class="container a1-content">
       <div class="row">
         <!-- room information -->
-        <div class="col-12 col-lg-6 a2-info">
+        <div class="col-12 col-lg-5 a2-info">
           <!-- room type -->
           <div class="mx-1 room-type txt-l">{{roomDetail.name}}</div>
           <!-- room info -->
@@ -28,34 +28,36 @@
             <div>房間大小：{{roomDetail.descriptionShort.Footage}} 平方公尺</div>
           </div>
           <!-- room description -->
-          <div class="mx-1 room-desc txt-l">{{roomDetail.description}}</div>
+          <div class="mx-1 room-desc txt-j">{{roomDetail.description}}</div>
           <!-- check-in & check-out -->
           <div class="row mx-1 room-inout">
-            <div class="col-6 p-0 flex-ccl">
-              <div>Check In</div>
-              <div>{{roomDetail.checkInAndOut.checkInEarly}} ～ {{roomDetail.checkInAndOut.checkInLate}}</div>
+            <div class="col-7 p-0 flex-ccl">
+              <div class='title'>Check In</div>
+              <div class='time'>{{roomDetail.checkInAndOut.checkInEarly}} ～ {{roomDetail.checkInAndOut.checkInLate}}</div>
             </div>
-            <div class="col-6 p-0 flex-ccl">
-              <div>Check Out</div>
-              <div>{{roomDetail.checkInAndOut.checkOut}}</div>
+            <div class="col-5 p-0 flex-ccl">
+              <div class='title'>Check Out</div>
+              <div class='time'>{{roomDetail.checkInAndOut.checkOut}}</div>
             </div>
           </div>
           <!-- equipments -->
-          <div class="row m-1 room-equip"></div>
+          <div class="row mx-1 room-equip"></div>
         </div>
         <!-- room price & booking -->
-        <div class="col-12 col-lg-6 a2-book">
+        <div class="col-12 col-lg-7 a2-book">
           <div class="row">
             <!-- price -->
-            <div class="col-12 col-lg-3 room-price txt-r">
-              <div>NT.{{roomDetail.normalDayPrice}}</div>
-              <div>平日(一~四)</div>
-              <div>NT.{{roomDetail.holidayPrice}}</div>
-              <div>假日(五~日)</div>
+            <div class="col-12 col-lg-4 room-price txt-r">
+              <div class='price normal'>NT.{{roomDetail.normalDayPrice}}</div>
+              <div class='txt'>平日(一~四)</div>
+              <div style='height: 14px'/>
+              <div class='price holiday'>NT.{{roomDetail.holidayPrice}}</div>
+              <div class='txt'>假日(五~日)</div>
             </div>
             <!-- booked schedule -->
-            <div class="col-12 col-lg-9 room-book">
-              <div style='height: 200px; background: gray;'></div>
+            <div class="col-12 col-lg-8 room-book">
+              <div style='height: 400px; background: gray;'></div>
+              <div style='height: 26px'/>
               <div class="button">預約時段</div>
             </div>
           </div>
@@ -144,33 +146,70 @@ export default {
 
 // room information
 .a2-info {
-  background: red;
+  // background: red;
   .room-type {
+    font-size: $f-size-6;
+    font-weight: bold;
   }
   .room-info {
     margin-top: 6.44%;
+    font-size: $f-size-2;
+    letter-spacing: 1.46px;
+    line-height: 2;
   }
   .room-desc {
     margin-top: 3%;
+    font-size: $f-size-2;
+    letter-spacing: 1.25px;
+    line-height: 2;
   }
   .room-inout {
     margin-top: 10.8%;
+    .title {
+      font-size: $f-size-2;
+      letter-spacing: 1.46px;
+      line-height: 1.5;
+    }
+    .time {
+      font-size: $f-size-3;
+      letter-spacing: 2.19px;
+      line-height: 1.5;
+    }
   }
   .room-equip {
-    width: 100%;
-    height: 100px;
+    height: 200px;
     background: $clr-gray-f0;
+    margin: 8.3% auto;
   }
 }
 
 // price & booking
 .a2-book {
-  background: blue;
+  // background: blue;
   .room-price {
-    background: lightblue;
+    // background: lightblue;
+    line-height: 1.5;
+    margin: 14px auto;
+
+    .price {
+      color: $clr-font-lv1;
+    }
+    .normal {
+      font-size: $f-size-5;
+      letter-spacing: 3.13px;
+    }
+    .holiday {
+      font-size: $f-size-2;
+      letter-spacing: 1.67px;
+    }
+    .txt {
+      color: $clr-font-lv2;
+      font-size: $f-size-1;
+      letter-spacing: 1.46px;
+    }
   }
   .room-book {
-    background: lightskyblue;
+    // background: lightskyblue;
     .button {
       width: 118px;
       height: 53px;
