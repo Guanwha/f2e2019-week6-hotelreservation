@@ -24,7 +24,14 @@ export const mutations = {
 
 export const state = {
   roomsIntro: [],             // introduction of all rooms
-  roomDetail: null,           // detail information of queried room
+  roomDetail: {               // detail information of queried room
+    imageUrl: [],
+    descriptionShort: {
+      Bed: [],
+    },
+    checkInAndOut: {},
+    amenities: {},
+  },
   roomBooking: null,          // booking list of queried room
   lastErrorMessage: null,     // include action, errMessage
 };
