@@ -120,7 +120,11 @@
             </div>
             <!-- booked schedule -->
             <div class="col-12 col-lg-8 room-book">
-              <div style='height: 400px; background: gray;'></div>
+              <v-calendar class='calendar'
+                          is-expanded
+                          :min-date='startDate'
+                          :max-date='endDate'
+                          :disabled-dates='bookedDate'/>
               <div style='height: 26px'/>
               <div class="button">預約時段</div>
             </div>
@@ -151,6 +155,25 @@ export default {
     ...mapActions(['getRoom']),
   },
   computed: {
+    startDate() {
+      // start Date must be after today
+      const today = new Date();
+      return today.setDate(today.getDate() + 1);
+    },
+    endDate() {
+      // only book date in 180 days
+      const today = new Date();
+      return today.setDate(today.getDate() + 180);
+    },
+    bookedDate() {
+      const booked = [];
+      if (this.roomBooking) {
+        this.roomBooking.forEach((book) => {
+          booked.push(book.date);
+        });
+      }
+      return booked;
+    },
     ...mapGetters(['roomDetail', 'roomBooking']),
   },
 };
@@ -287,13 +310,21 @@ export default {
     }
   }
   .room-book {
-    // background: lightskyblue;
+    .calendar {
+      background: $clr-gray-f7;
+      box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
+      border-radius: 0;
+      padding-top: 25px;
+    }
     .button {
       width: 118px;
-      height: 53px;
+      height: 48px;
       background: $clr-gray-57;
       color: $clr-white;
-      line-height: 53px;
+      line-height: 48px;
+      &:hover {
+        font-size: $f-size-2 * 1.1;
+      }
     }
   }
 }
