@@ -6,7 +6,7 @@
         <img src="../assets/logo_block.svg" alt="">
       </div>
       <!-- images -->
-      <div class="a1-images position-absolute fixed-top flex-rcc">
+      <div class="a1-images flex-rcc">
         <div class="img1 flex-2" :style="{ 'background-image': 'url(' + roomDetail.imageUrl[0] + ')' }"></div>
         <div class="img23 flex-1 flex-ccc">
           <div class="img2 flex-1" :style="{ 'background-image': 'url(' + roomDetail.imageUrl[1] + ')' }"></div>
@@ -119,27 +119,33 @@
               <div class='txt'>假日(五~日)</div>
             </div>
             <!-- booked schedule -->
-            <div class="col-12 col-lg-8 room-book">
+            <div class="col-12 col-lg-8 room-book flex-ccl">
               <v-calendar class='calendar'
                           is-expanded
                           :min-date='startDate'
                           :max-date='endDate'
                           :disabled-dates='bookedDate'/>
               <div style='height: 26px'/>
-              <div class="button">預約時段</div>
+              <button type="button" class="button" data-toggle="modal" data-target="#dialog">預約時段</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- dialog -->
+    <DialogBooking :pID='"dialog"'/>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import DialogBooking from '../components/DialogBooking';
 
 export default {
   name: 'RoomInfo',
+  components: {
+    DialogBooking,
+  },
   data() {
     return {
       roomID: this.$route.params.id,
@@ -207,7 +213,6 @@ export default {
 .a1-images {
   width: 100%;
   height: 100%;
-  z-index: 0;
 }
 .img1 {
   height: 100%;
