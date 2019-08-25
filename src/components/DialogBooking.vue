@@ -11,14 +11,14 @@
             <div class="form-group row">
               <label for="inputName" class="col-md-4 col-form-label txt-l">姓名</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="inputName" placeholder="Name">
+                <input type="text" class="form-control" id="inputName" placeholder="Name" v-model='name'>
               </div>
             </div>
             <!-- phone -->
             <div class="form-group row">
               <label for="inputPhone" class="col-md-4 col-form-label txt-l">電話</label>
               <div class="col-md-8">
-                <input type="tel" class="form-control" id="inputPhone" placeholder="Phone">
+                <input type="tel" class="form-control" id="inputPhone" placeholder="Phone" v-model='phone'>
               </div>
             </div>
             <!-- date -->
@@ -33,7 +33,8 @@
                                }'
                                :popover='{ visibility: "focus" }'
                                v-model='dateRange'
-                               is-expanded/>
+                               is-expanded
+                               :disabled-dates='pDisabledDate'/>
               </div>
             </div>
             <!-- price detail -->
@@ -74,9 +75,15 @@ export default {
   name: 'DialogBooking',
   props: {
     pID: String,
+    pRoomID: String,
+    pNormalDayPrice: Number,
+    pHolidayPrice: Number,
+    pDisabledDate: Array,
   },
   data() {
     return {
+      name: '',
+      phone: '',
       dateRange: {},
     };
   },

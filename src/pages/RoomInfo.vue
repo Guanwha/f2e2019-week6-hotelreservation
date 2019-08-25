@@ -122,8 +122,6 @@
             <div class="col-12 col-lg-8 room-book flex-ccl">
               <v-calendar class='calendar'
                           is-expanded
-                          :min-date='startDate'
-                          :max-date='endDate'
                           :disabled-dates='bookedDate'/>
               <div style='height: 26px'/>
               <button type="button" class="button" data-toggle="modal" data-target="#dialog">預約時段</button>
@@ -133,7 +131,11 @@
       </div>
     </div>
     <!-- dialog -->
-    <DialogBooking :pID='"dialog"'/>
+    <DialogBooking :pID='"dialog"'
+                   :pRoomID='roomDetail.id'
+                   :pNormalDayPrice='roomDetail.normalDayPrice'
+                   :pHolidayPrice='roomDetail.holidayPrice'
+                   :pDisabledDate='bookedDate'/>
   </div>
 </template>
 
@@ -162,17 +164,22 @@ export default {
   },
   computed: {
     startDate() {
-      // start Date must be after today
+      // start Date must be after today (available days is exclude startDate)
       const today = new Date();
-      return today.setDate(today.getDate() + 1);
+      return today.setDate(today.getDate());
     },
     endDate() {
-      // only book date in 180 days
+      // only book date in 180 days (available days is exclude endDate)
       const today = new Date();
-      return today.setDate(today.getDate() + 180);
+      return today.setDate(today.getDate() + 181);
     },
     bookedDate() {
-      const booked = [];
+      // initialize by startDate ~ endDate
+      const booked = [
+        { start: null, end: this.startDate },
+        { start: this.endDate, end: null },
+      ];
+      // check booked date
       if (this.roomBooking) {
         this.roomBooking.forEach((book) => {
           booked.push(book.date);
