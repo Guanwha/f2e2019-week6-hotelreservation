@@ -42,12 +42,12 @@
               <!-- normal days -->
               <div class="price-item flex-rsbc">
                 <div class="name">平日時段</div>
-                <div class="days">{{normalPriceDays}}</div>
+                <div class="days">{{normalDayTxt}}</div>
               </div>
               <!-- holiday days -->
               <div class="price-item flex-rsbc">
                 <div class="name">假日時段</div>
-                <div class="days">{{holidayPriceDays}}</div>
+                <div class="days">{{holidayTxt}}</div>
               </div>
             </div>
             <!-- total price -->
@@ -88,14 +88,43 @@ export default {
     };
   },
   computed: {
-    normalPriceDays() {
-      return 'NT.xxxx (1夜)';
+    bookingDays() {
+      if (this.dateRange && this.dateRange.start && this.dateRange.end) {
+        // dateRange is legal
+        let nNormalDay = 0;
+        let nHoliday = 0;
+        const curDate = new Date(this.dateRange.start);
+        const endDate = new Date(this.dateRange.end);
+        // check each day is holiday in loop
+        while (curDate.getTime() < endDate.getTime()) {
+          const dayOfWeek = curDate.getDay();
+          if (dayOfWeek === 0 || dayOfWeek === 6) {
+            nHoliday += 1;
+          }
+          else {
+            nNormalDay += 1;
+          }
+          // next day
+          curDate.setDate(curDate.getDate() + 1);
+        }
+        return [nNormalDay, nHoliday];
+      }
+      return [0, 0];
     },
-    holidayPriceDays() {
-      return 'NT.yyyy (1夜)';
+    normalDayPrices() {
+      return this.pNormalDayPrice * this.bookingDays[0];
+    },
+    holidayPrices() {
+      return this.pHolidayPrice * this.bookingDays[1];
+    },
+    normalDayTxt() {
+      return `NT.${this.normalDayPrices} (${this.bookingDays[0]}夜)`;
+    },
+    holidayTxt() {
+      return `NT.${this.holidayPrices} (${this.bookingDays[1]}夜)`;
     },
     totalPrice() {
-      return 'NT.2850';
+      return `NT.${this.normalDayPrices + this.holidayPrices}`;
     },
   },
 };
