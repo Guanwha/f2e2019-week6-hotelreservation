@@ -60,7 +60,7 @@
                 <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
               </div>
               <div class="col-6">
-                <button type="submit" class="btn btn-confirm">確定預約</button>
+                <button type="submit" class="btn btn-confirm" :disabled=!validated>確定預約</button>
               </div>
             </div>
           </form>
@@ -125,6 +125,9 @@ export default {
     },
     totalPrice() {
       return `NT.${this.normalDayPrices + this.holidayPrices}`;
+    },
+    validated() {
+      return (this.name.length > 0 && this.phone.length > 0 && this.dateRange.start && this.dateRange.end);
     },
   },
 };
