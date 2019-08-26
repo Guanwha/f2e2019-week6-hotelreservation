@@ -60,7 +60,7 @@
                 <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
               </div>
               <div class="col-6">
-                <button type="submit" class="btn btn-confirm" :disabled=!validated>確定預約</button>
+                <button type="submit" class="btn btn-confirm" :disabled=!validated v-on:click="submit()">確定預約</button>
               </div>
             </div>
           </form>
@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'DialogBooking',
   props: {
@@ -86,6 +88,33 @@ export default {
       phone: '',
       dateRange: {},
     };
+  },
+  methods: {
+    submit() {
+      if (this.validated) {
+        const payload = {
+          roomID: this.pRoomID,
+          name: this.name,
+          phone: this.phone,
+          dates: [],
+        };
+        // collect the dates
+        const curDate = new Date(this.dateRange.start);
+        const endDate = new Date(this.dateRange.end);
+        while (curDate.getTime() < endDate.getTime()) {
+          payload.dates.push(`${curDate.getFullYear()}-${this.dec0X(curDate.getMonth() + 1, 2)}-${this.dec0X(curDate.getDate(), 2)}`);
+          // next day
+          curDate.setDate(curDate.getDate() + 1);
+        }
+        // call action
+        this.bookRoom(payload);
+      }
+    },
+    // fill zeros to the number (ex: 9 with 3 display digits => 009)
+    dec0X(num, length) {
+      return (Array(length).join('0') + num).slice(-length);
+    },
+    ...mapActions(['bookRoom']),
   },
   computed: {
     bookingDays() {

@@ -14,6 +14,14 @@ export const mutations = {
       state.roomBooking = payload.booking;
     }
   },
+  // payload is booking (array include name, tel, date)
+  [types.BOOKED_ROOM](state, payload) {
+    if (payload) {
+      payload.forEach((booking) => {
+        state.roomBooking.push(booking);
+      });
+    }
+  },
   // payload is error object (include action, errMessage)
   [types.UPDATE_ERR](state, payload) {
     if (payload) {
