@@ -60,7 +60,7 @@
                 <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
               </div>
               <div class="col-6">
-                <button type="submit" class="btn btn-confirm" :disabled=!validated v-on:click="submit()">確定預約</button>
+                <button type="submit" class="btn btn-confirm" data-dismiss="modal" :disabled=!validated v-on:click="submit()">確定預約</button>
               </div>
             </div>
           </form>
