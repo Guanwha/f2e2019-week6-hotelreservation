@@ -4,6 +4,7 @@ import * as types from './mutation_types';
 const actions = {
   getRooms: ({ commit }) => {
     // [API] get all rooms
+    commit(types.START_LOADING);
     axios.get('https://challenge.thef2e.com/api/thef2e2019/stage6/rooms', {
       headers: {
         Authorization: process.env.API_TOKEN,
@@ -21,6 +22,7 @@ const actions = {
   },
   getRoom: ({ commit }, payload) => {
     // [API] get one room detail
+    commit(types.START_LOADING);
     const url = `https://challenge.thef2e.com/api/thef2e2019/stage6/room/${payload}`;   // payload must be a room id
     axios.get(url, {
       headers: {
@@ -39,6 +41,7 @@ const actions = {
   },
   bookRoom: ({ commit }, payload) => {
     // [API] book a room with several date
+    commit(types.START_LOADING);
     const url = `https://challenge.thef2e.com/api/thef2e2019/stage6/room/${payload.roomID}`;
     const data = {
       name: payload.name,

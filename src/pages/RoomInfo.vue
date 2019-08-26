@@ -136,17 +136,21 @@
                    :pNormalDayPrice='roomDetail.normalDayPrice'
                    :pHolidayPrice='roomDetail.holidayPrice'
                    :pDisabledDate='bookedDate'/>
+    <!-- loading -->
+    <Loading :isShow='isLoading'/>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import DialogBooking from '../components/DialogBooking';
+import Loading from '../components/Loading';
 
 export default {
   name: 'RoomInfo',
   components: {
     DialogBooking,
+    Loading,
   },
   data() {
     return {
@@ -187,7 +191,7 @@ export default {
       }
       return booked;
     },
-    ...mapGetters(['roomDetail', 'roomBooking']),
+    ...mapGetters(['roomDetail', 'roomBooking', 'isLoading']),
   },
 };
 </script>
@@ -212,7 +216,6 @@ export default {
 .logo {
   top: 5.37%;
   left: 4%;
-  z-index: 1;
   &:hover {
     filter: drop-shadow(0 0 9px $clr-white);
   }

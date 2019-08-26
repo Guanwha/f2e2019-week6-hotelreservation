@@ -58,17 +58,22 @@
         </div>
       </div>
     </div>
+
+    <!-- loading -->
+    <Loading :isShow='isLoading'/>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import RoomCard from '../components/RoomCard';
+import Loading from '../components/Loading';
 
 export default {
   name: 'Rooms',
   components: {
     RoomCard,
+    Loading,
   },
   data() {
     return {
@@ -92,7 +97,7 @@ export default {
     ...mapActions(['getRooms']),
   },
   computed: {
-    ...mapGetters(['roomsIntro']),
+    ...mapGetters(['roomsIntro', 'isLoading']),
   },
 };
 </script>
