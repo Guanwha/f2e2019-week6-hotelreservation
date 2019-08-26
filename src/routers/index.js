@@ -24,4 +24,11 @@ export default new VueRouter({
       component: TestPage,
     },
   ],
+  scrollBehavior(to, savedPosition) {
+    // page scroll to top for all route navigations
+    if (to.name === 'Home') {
+      return { x: savedPosition.x, y: savedPosition.y };
+    }
+    return { x: 0, y: 0 };
+  },
 });

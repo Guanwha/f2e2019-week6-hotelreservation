@@ -16,6 +16,9 @@
 .txt-r {
   text-align: right;
 }
+.txt-j {
+  text-align: justify;
+}
 
 // flex utility
 //-- row, left, center
@@ -66,6 +69,13 @@
   align-items: center;
   text-align: right;
 }
+//-- row, space-between, center
+.flex-rsbc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 //-- row, space-between, bottom
 .flex-rsbb {
   display: flex;
@@ -95,6 +105,32 @@
   justify-content: center;
   align-items: flex-end;
 }
+//-- column, center, space-between
+.flex-ccsb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+}
+
+//-- flex number
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+.flex-3 {
+  flex: 3;
+}
+.flex-4 {
+  flex: 4;
+}
+.flex-5 {
+  flex: 5;
+}
+
+
 
 // layout
 .remove-m {
@@ -103,10 +139,10 @@
 .remove-p {
   padding: 0;
 }
-.full-width {
+.full-w {
   width: 100%;
 }
-.full-height {
+.full-h {
   height: 100%;
 }
 
