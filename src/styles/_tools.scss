@@ -105,6 +105,13 @@
   justify-content: center;
   align-items: flex-end;
 }
+//-- column, center, space-between
+.flex-ccsb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+}
 
 //-- flex number
 .flex-1 {
@@ -132,10 +139,10 @@
 .remove-p {
   padding: 0;
 }
-.full-width {
+.full-w {
   width: 100%;
 }
-.full-height {
+.full-h {
   height: 100%;
 }
 

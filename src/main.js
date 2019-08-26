@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VCalendar from 'v-calendar';
 import App from './App';
 import store from '../src/stores';
 import router from '../src/routers';
@@ -10,6 +11,7 @@ import './styles/all.scss';
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
+Vue.use(VCalendar);
 
 /* eslint-disable no-new */
 new Vue({
