@@ -6,7 +6,7 @@
         <img src="../assets/logo_block.svg" alt="">
       </div>
       <!-- images -->
-      <div class="a1-images position-absolute fixed-top flex-rcc">
+      <div class="a1-images flex-rcc">
         <div class="img1 flex-2" :style="{ 'background-image': 'url(' + roomDetail.imageUrl[0] + ')' }"></div>
         <div class="img23 flex-1 flex-ccc">
           <div class="img2 flex-1" :style="{ 'background-image': 'url(' + roomDetail.imageUrl[1] + ')' }"></div>
@@ -119,23 +119,39 @@
               <div class='txt'>假日(五~日)</div>
             </div>
             <!-- booked schedule -->
-            <div class="col-12 col-lg-8 room-book">
-              <div style='height: 400px; background: gray;'></div>
+            <div class="col-12 col-lg-8 room-book flex-ccl">
+              <v-calendar class='calendar'
+                          is-expanded
+                          :disabled-dates='bookedDate'/>
               <div style='height: 26px'/>
-              <div class="button">預約時段</div>
+              <button type="button" class="button" data-toggle="modal" data-target="#dialog">預約時段</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- dialog -->
+    <DialogBooking :pID='"dialog"'
+                   :pRoomID='roomDetail.id'
+                   :pNormalDayPrice='roomDetail.normalDayPrice'
+                   :pHolidayPrice='roomDetail.holidayPrice'
+                   :pDisabledDate='bookedDate'/>
+    <!-- loading -->
+    <Loading :isShow='isLoading'/>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import DialogBooking from '../components/DialogBooking';
+import Loading from '../components/Loading';
 
 export default {
   name: 'RoomInfo',
+  components: {
+    DialogBooking,
+    Loading,
+  },
   data() {
     return {
       roomID: this.$route.params.id,
@@ -151,7 +167,31 @@ export default {
     ...mapActions(['getRoom']),
   },
   computed: {
-    ...mapGetters(['roomDetail', 'roomBooking']),
+    startDate() {
+      // start Date must be after today (available days is exclude startDate)
+      const today = new Date();
+      return today.setDate(today.getDate());
+    },
+    endDate() {
+      // only book date in 180 days (available days is exclude endDate)
+      const today = new Date();
+      return today.setDate(today.getDate() + 181);
+    },
+    bookedDate() {
+      // initialize by startDate ~ endDate
+      const booked = [
+        { start: null, end: this.startDate },
+        { start: this.endDate, end: null },
+      ];
+      // check booked date
+      if (this.roomBooking) {
+        this.roomBooking.forEach((book) => {
+          booked.push(book.date);
+        });
+      }
+      return booked;
+    },
+    ...mapGetters(['roomDetail', 'roomBooking', 'isLoading']),
   },
 };
 </script>
@@ -176,7 +216,6 @@ export default {
 .logo {
   top: 5.37%;
   left: 4%;
-  z-index: 1;
   &:hover {
     filter: drop-shadow(0 0 9px $clr-white);
   }
@@ -184,7 +223,6 @@ export default {
 .a1-images {
   width: 100%;
   height: 100%;
-  z-index: 0;
 }
 .img1 {
   height: 100%;
@@ -287,13 +325,21 @@ export default {
     }
   }
   .room-book {
-    // background: lightskyblue;
+    .calendar {
+      background: $clr-gray-f7;
+      box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
+      border-radius: 0;
+      padding-top: 25px;
+    }
     .button {
       width: 118px;
-      height: 53px;
+      height: 48px;
       background: $clr-gray-57;
       color: $clr-white;
-      line-height: 53px;
+      line-height: 48px;
+      &:hover {
+        font-size: $f-size-2 * 1.1;
+      }
     }
   }
 }
